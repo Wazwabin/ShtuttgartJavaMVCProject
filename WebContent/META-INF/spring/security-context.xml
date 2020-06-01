@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:s="http://www.springframework.org/schema/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/security
+    http://www.springframework.org/schema/security/spring-security.xsd">
+    
+    <!-- парам тега позволит выполн авториз с использ выраж SpEL -->
+    <s:http use-expressions="true">
+    <!-- всё разрешаем всем -->
+    	<s:intercept-url pattern="/*" access="permitAll"/>
+    <!-- конфиг адрес страницы логина, куда перекидывать будем пользов и по умолч -->	
+    	<s:form-login login-page="/shtuttgart/"
+    		authentication-failure-url="/security/loginfail"
+    		default-target-url="/shtuttgart/"/>
+    	<s:logout logout-success-url="/shtuttgart/"/>
+    	<!-- менеджер, проверяющий логин и пароль, здесь исп простейший вариант
+    	где имя и пароль сразу здесь -->
+    </s:http>
+    <s:authentication-manager>
+    	<s:authentication-provider>
+    		<s:user-service>
+    			<s:user name="user" password="user" authorities="ROLE_USER"/>
+    		</s:user-service>
+    	</s:authentication-provider>
+    </s:authentication-manager>
+    
+</beans>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>ShtMVC</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <context-param>
+  	<param-name>contextConfigLocation</param-name>
+  	<!-- корневая конфиг для всех сервлетов -->
+  	<param-value>/WEB-INF/spring/root-context.xml</param-value>
+  </context-param>
+  
+  <!-- добавляем фильтр c 2 параметрами, отвечающий за кодировку, чтобы с RU не было проблем -->
+  <filter>
+	<filter-name>CharacterEncodingFilter</filter-name>
+	<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+	
+	<init-param>
+		<param-name>encoding</param-name>
+		<param-value>utf8</param-value>
+	</init-param>
+	<init-param>
+		<param-name>forceEncoding</param-name>
+		<param-value>true</param-value>
+	</init-param>
+  </filter>
+  
+  <!-- добавляем фильтр, отвечающий за методы отличные от get и post -->
+  <filter>
+	<filter-name>HttpMethodFilter</filter-name>
+	<filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+  </filter>
+  
+  <!-- фильтр, связ диспетчер JPA с потоком -->
+  <filter>
+	<filter-name>Spring OpenEntityManagerinViewFilter</filter-name>
+	<filter-class>org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter</filter-class>
+  </filter>
+ 
+ <!-- фильры-мэпперы, указ для каких URL какие фильры исп -->
+  <filter-mapping>
+	<filter-name>CharacterEncodingFilter</filter-name>
+	<url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  <filter-mapping>
+	<filter-name>HttpMethodFilter</filter-name>
+	<url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  <filter-mapping>
+	<filter-name>Spring OpenEntityManagerinViewFilter</filter-name>
+	<url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  <!-- листенер, обесп загр контекста -->
+  <listener>
+	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  
+  <!-- указываем наш дспетчер-сервлет и кастомный путь до него -->
+  <servlet>
+	<servlet-name>appServlet</servlet-name>
+	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+	<init-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
+	</init-param>
+	<load-on-startup>1</load-on-startup><!-- тут указ порядок загрузки когда неск сервлетов -->
+  </servlet>
+  
+  <!-- указ запросы на какие адреса будет обрабатывать наш сервлет -->
+  <servlet-mapping>
+	<servlet-name>appServlet</servlet-name>
+	<url-pattern>/</url-pattern> <!-- тк серлет один мы тут указали что обрабат он будет всё -->
+  </servlet-mapping>
+  
+<!-- Конфигурация Spring Security -->
+ <filter>
+	<filter-name>springSecurityFilterChain</filter-name>
+	<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+  </filter>
+  <filter-mapping>
+	<filter-name>springSecurityFilterChain</filter-name>
+	<!-- в таком теге всегда указ в какой части приложения будет раб этот фильтр (тут на всё) -->
+	<url-pattern>/*</url-pattern> 
+  </filter-mapping>
+</web-app>
