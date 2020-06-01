@@ -1,0 +1,63 @@
+This project is realized MVC pattern based on info of my lovely Shtuttgart town ;)
+
+Here is the script I used for creating table in MySQL for my Entity:
+
+		 -- MySQL dump 10.13  Distrib 5.5.25, for Win32 (x86)
+		--
+		-- Host: localhost    Database: stuttgart
+		-- ------------------------------------------------------
+		-- Server version	5.5.25-log
+		
+		/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+		/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+		/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+		/*!40101 SET NAMES utf8 */;
+		/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+		/*!40103 SET TIME_ZONE='+00:00' */;
+		/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+		/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+		/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+		/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+		
+		--
+		-- Table structure for table `towninfo`
+		--
+		
+		DROP TABLE IF EXISTS `towninfo`;
+		/*!40101 SET @saved_cs_client     = @@character_set_client */;
+		/*!40101 SET character_set_client = utf8 */;
+		CREATE TABLE `towninfo` (
+		  `id` int(11) NOT NULL AUTO_INCREMENT,
+		  `title` varchar(50) NOT NULL DEFAULT '',
+		  `photo` varchar(50) NOT NULL DEFAULT '',
+		  `textinfo` mediumtext,
+		  PRIMARY KEY (`id`)
+		) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+		/*!40101 SET character_set_client = @saved_cs_client */;
+		
+		--
+		-- Dumping data for table `towninfo`
+		--
+		
+		LOCK TABLES `towninfo` WRITE;
+		/*!40000 ALTER TABLE `towninfo` DISABLE KEYS */;
+		INSERT INTO `towninfo` VALUES (1,'Дворцовая площадь','ref1','Эта площадь в самом центре Штутгарта служит своего рода парадным «фасадом города». Доминирующим зданием здесь является Новый дворец. Из-за продолжительного периода строительства в его архитектуре смешалось несколько стилей – барокко, классицизм, рококо и ампир.'),
+		(2,'Зоолого-ботанический сад Вильгельма','ref2','В северной части Штутгарта на территории дворцово-паркового комплекса Вильгельма находится ботанический сад и зоопарк. Это одно из любимых мест отдыха горожан и туристов. Декоративный парк был создан в середине XIX века по поручению короля Вильгельма I.'),
+		(3,'Музей Porsche','ref3','На окраине Штутгарта – в районе Цуффенхаузен, базируется центр по производству автомобилей другой всемирно известной марки Porsche. Музей Porsche существует с 1976 года, а в 2004 году было принято решение о возведении нового музейного комплекса. В 2009 году красивое современное здание угловатых форм и прямых линий открыло свои двери для посетителей.'),
+		(4,'Улица Кёнигштрассе','ref4','Любителям шопинга непременно стоит посетить этот бульвар протяженностью 1,2 км. Он начинается от вокзала, проходит через Дворцовую площадь, а затем идет по диагонали дальше в восточную часть Штутгарта. С 1977 года Кёнигштрассе стала пешеходной.'),
+		(5,'Штутгартская телебашня','ref5','В середине XX века в Германии появилось много современных телевизионных башен, однако Штутгартская телевышка – первая железобетонная конструкция, которая является прототипом многих подобных башен не только в Германии, но и во всем мире.');
+		/*!40000 ALTER TABLE `towninfo` ENABLE KEYS */;
+		UNLOCK TABLES;
+		/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+		
+		/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+		/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+		/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+		/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+		/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+		/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+		/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+		
+		-- Dump completed on 2012-07-01 14:17:18
+
+Don't forget change JDBC connection-params in file jdbc.properties!
