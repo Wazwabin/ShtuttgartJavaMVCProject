@@ -3,6 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<!-- http://localhost:8080/ShtMVC/shtuttgart/ -->
+
 <meta http-equiv="Content-Type" content="text/html; charset=utf8">
 <title>Shtuttgart</title>
 <style>

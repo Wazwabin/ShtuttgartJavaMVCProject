@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf8" pageEncoding="utf8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> <!-- подкл taglib для перебора списка foreach -->
 <%@ taglib prefix="s" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
@@ -8,17 +8,38 @@
 	</style>
 	
 <head>
-	<meta http-equiv="Content-Type" content="text/html/table; charset=utf8">
-	<title>Shtuttgart</title>
-	<div id ="ShtHeader">
-	<img src="/ShtMVC/resources/images/GerbSht.jpg" height="100" alt="main logo" align="left">
-	
-	<h1>SHTUTTGART Baden-Württemberg</h1>
-	</div>
+<!-- http://localhost:8080/ShtMVC/shtuttgart/ -->
+	<meta http-equiv="Content-Type" content="text/html/table; charset=UTF-8">
+	<title>ShtuttgartMVCApp</title>
 </head>
-	
+
 <body>
-	<h1>Places of the town</h1>
+<div class="wrapper">
+<header>
+		<nav>
+          <div class="container">
+            <ul class="menu">
+              <li class="menuItem"><a href="#" class="menuLink">About</a></li>
+              <li class="menuItem">
+                <a href="/ShtMVC/resources/shtPhotoAlbum.html" class="menuLink">Photo Gallery</a>
+              </li>
+              <li>
+                <img src="/ShtMVC/resources/images/logo.png" height="100px" width="100px" alt="logo" class="logo" />
+              </li>
+              <li class="menuItem">
+                <a href="#" class="menuLink">Entertainments</a>
+              </li>
+              <li class="menuItem"><a href="#" class="menuLink">FAQ</a></li>
+            </ul>
+          </div>
+        </nav>	
+</header>
+	
+	<div class="mainText">
+		<h1>Shtuttgart</h1>
+		<h2>The place where you need to be!</h2>
+	</div>
+	<br>
 	<div id="userinfo">
 		<s:authorize access="isAuthenticated()">Привет, 
 			<s:authentication property="principal.username" />!
@@ -29,9 +50,9 @@
 	<s:authorize access="isAnonymous()">
 		<form id="login" name="loginForm" action="../j_spring_security_check" 
 			method="POST">
-			<label>Логин: </label>&nbsp;
+			<label>Login: </label>&nbsp;
 			<input type="text" name="j_username">
-			<label>Пароль: </label>&nbsp;
+			<label>Password: </label>&nbsp;
 			<input type="password" name="j_password">
 			<input type="submit" name="submit" value="Войти">
 		</form>
@@ -65,9 +86,12 @@
 	<s:authorize access="hasRole('ROLE_USER')">
 		<a href="update/0">Добавить...</a>
 	</s:authorize>
-	<a href="/ShtMVC/resources/shtPhotoAlbum.html">ФОТО</a>
+	</div>
+	<img src="/ShtMVC/resources/images/ShtTower.png" 
+	align="right" width="500" height="800" alt="logo" class="logo" />
 </div>
 	<div id="footer">Copyright © WazwabinCo <span>/</span> Все права защищены. </div>
+	
 </body>
 
 </html>

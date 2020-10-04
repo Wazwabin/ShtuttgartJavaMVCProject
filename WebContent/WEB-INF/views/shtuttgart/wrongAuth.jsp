@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%><!-- подкл таглиб для перебора списка foreach -->
 <%@ taglib prefix="s" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
@@ -7,6 +6,8 @@
 	<style>
 	   <%@include file='style.css' %>
 	</style>
+	
+	<!-- http://localhost:8080/ShtMVC/shtuttgart/ -->
 	
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
